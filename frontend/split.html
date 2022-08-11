@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>split</title>
+</head>
+<body>
+
+    <script>
+
+      let myemail = 'abc@gmail.com';
+
+      let email2 = myemail.split('@');
+      console.log(email2);   // ['abc', 'gmail.com']
+      console.log(email2[1]);  // gmail.com
+
+      let email3 = email2[1].split['.'];
+      console.log(email3);    // 왜 undefined라고 나오지ㅠ
+      //console.log(email3[1]);
+
+
+
+
+
+
+      console.log(myemail.split('@'));  // ['abc', 'gmail.com']
+      console.log(myemail.split('@')[1].split('.'));  // ['gmail', 'com']
+      console.log(myemail.split('@')[1].split('.')[0]);  // gmail
+
+
+    </script>
+
+
+</body>
+</html>
