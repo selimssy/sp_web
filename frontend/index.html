@@ -92,16 +92,21 @@
 
     </style>
     <script>
-        function hey(){
-            alert('안녕!');
+        function sum(a,b){
+            alert('계산을 하자');
+            return a+b
         }
+        let result = sum(2,3)
+        alert(result);
+        // 결과: '계산을 하자' 먼저 뜨고 5가 뜬다
+
     </script>
 </head>
 
 <body>
     <div class="mytitle">
       <h1>내 생에 최고의 영화들</h1>
-      <button onclick="hey()">영화 기록하기</button>
+      <button>영화 기록하기</button>
     </div>
 
     <div class="mypost">
