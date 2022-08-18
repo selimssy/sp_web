@@ -95,6 +95,28 @@
     </style>
     <script>
 
+        $.ajax({
+            type: "GET",
+            url: "http://spartacodingclub.shop/sparta_api/seoulair",
+            data: {},
+            success: function (response) {
+                //console.log(response)   // get 방식으로 이 URL에 요청해서 response를 찍어주겠다!
+                //console.log(response['RealtimeCityAir']['row'])
+
+                if(response) {  // 이렇게 하는게 더 좋겠다!
+                    let row = response['RealtimeCityAir']['row']
+                    for (let i = 0; i < row.length; i++) {
+                        let gu_name = row[i]['MSRSTE_NM']
+                        let gu_mise = row[i]['IDEX_MVL']
+                        console.log(gu_name, gu_mise)
+                    }
+                }else{
+                    alert("불러오기 실패")
+                }
+            }
+        })
+
+
         // let count = 0;
         //
         // function hey(){
