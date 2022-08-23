@@ -91,3 +91,17 @@ print()   # 줄바꿈
 for person in people:
     if person['age'] >= 20:
         print(person['name'], end='  ')   # bob  carry  ben
+
+
+
+
+
+
+
+
+
+
+
+#문자를 숫자로 변환 - int()
+
+# 숫자를 문자로 변환 - str()
