@@ -40,7 +40,7 @@ db.users.insert_one({'name':'ann', 'age' : 20})
 # 2.조회
 
 
-# 2-1) 다보기
+# 2-1) 다보기(find)
 all_users = list(db.users.find({}, {'_id':False}))   # 조건은 없고, '_id'는 출력 안하겠다
 
 for user in all_users:
@@ -52,7 +52,7 @@ print() #줄바꿈
 
 
 
-# 2_2) 'name'이 'bobby'인 유저를 찾아 'age'를 출력
+# 2_2) 'name'이 'bobby'인 유저를 찾아 'age'를 출력  (find_one)
 user = db.users.find_one({'name':'bobby'}, {'_id':False})
 print(user['age'])  # 27
 
