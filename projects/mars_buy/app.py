@@ -34,6 +34,20 @@ def web_mars_post():
 
 
 
+@app.route("/mars2", methods=["POST"])
+def web_mars_post2():
+
+    name_receive2 = request.form['name_give2']
+
+
+    db.mars.delete_one({'name':name_receive2})
+
+
+    return jsonify({'msg': '삭제!'})
+
+
+
+
 @app.route("/mars", methods=["GET"])
 def web_mars_get():
     order_list = list(db.mars.find({}, {'_id': False}))

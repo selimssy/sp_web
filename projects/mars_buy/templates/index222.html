@@ -47,24 +47,19 @@
             font-size: 18px;
         }
 
-        .order > table button{
-            height: 25px;
-            line-height: 25px;
-            border: transparent;
-            border-radius: 5px;
-            color: black;
-        }
-        
 
         option {
             color: black;
         }
     </style>
     <script>
+        $(document).ready(function () {
+            show_order();
+
+        });
 
 
-        $(function (){
-
+        function show_order() {
             $.ajax({
                 type: 'GET',
                 url: '/mars',
@@ -76,82 +71,32 @@
                         let address = rows[i]['address']
                         let size = rows[i]['size']
 
-                        // let temp_html = `<tr>
-                        //                     <td>${name}</td>
-                        //                     <td>${address}</td>
-                        //                     <td>${size}</td>
-                        //                     <td><button class="del_del">x</button></td>
-                        //                   </tr>`
-                        let temp_html = '<tr><td>' + name + '</td><td>' + address + '</td><td>' + size + '</td><td><button class="del_del">x</button></td></tr>'
+                        let temp_html = `<tr>
+                                            <td>${name}</td>
+                                            <td>${address}</td>
+                                            <td>${size}</td>
+                                          </tr>`
                         $('#order_box').append(temp_html)
                     }
                 }
             });
+        }
+        function save_order() {
+            let name = $('#name').val()
+            let address = $('#address').val()
+            let size = $('#size').val()
 
+            $.ajax({
+                type: 'POST',
+                url: '/mars',
+                data: { name_give: name, address_give: address, size_give:size },
+                success: function (response) {
+                    alert(response['msg'])
 
-            $('#save_order').click(function (){
-                let name = $('#name').val()
-                let address = $('#address').val()
-                let size = $('#size').val()
-
-                $.ajax({
-                    type: 'POST',
-                    url: '/mars',
-                    data: { name_give: name, address_give: address, size_give:size },
-                    success: function (response) {
-                        alert(response['msg'])
-
-                        window.location.reload()  // 새로고침
-                    }
-                });
-            })
-
-            // $(".del_del").on("click", function () {
-            //     $(this).parent().parent().remove();
-            //     console.log(123)
-            // });
-
-            $(document).on("click", ".del_del", function () {
-                $(this).parent().parent().remove();
-                let name = $(this).parent().parent().children().first().text()
-                $.ajax({
-                    type: 'POST',
-                    url: '/mars2',
-                    data: { name_give2: name},
-                    success: function (response) {
-                        alert(response['msg'])
-
-                        window.location.reload()  // 새로고침
-                    }
-                })
-
-            })
-
-
-
-
-            // $(".del_del").click(function (){
-            //    $(this).parent().parent().remove()
-            //    console.log(123)
-            //    let name = $(this).parent().parent().children().first().text()
-            //    $.ajax({
-            //         type: 'POST',
-            //         url: '/mars2',
-            //         data: { name_give: name},
-            //         success: function (response) {
-            //             alert(response['msg'])
-            //
-            //             window.location.reload()  // 새로고침
-            //         }
-            //     });
-            // })
-
-
-        })
-
-
-
-
+                    window.location.reload()  // 새로고침
+                }
+            });
+        }
 
 
 
@@ -188,7 +133,7 @@
                   <option value="50평">50평</option>
                 </select>
               </div>
-              <button id="save_order" type="button" class="btn btn-warning mybtn">주문하기</button>
+              <button onclick="save_order()" type="button" class="btn btn-warning mybtn">주문하기</button>
         </div>
         <table class="table">
             <thead>
