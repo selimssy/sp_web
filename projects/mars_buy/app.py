@@ -34,16 +34,32 @@ def web_mars_post():
 
 
 
-@app.route("/mars2", methods=["POST"])
-def web_mars_post2():
 
-    name_receive2 = request.form['name_give2']
+# @app.route("/mars_update", methods=["POST"])
+# def web_mars_post2():
+#
+#     name_receive2 = request.form['name_give2']
+#
+#
+#     db.mars.delete_one({'name':name_receive2})
+#     db.mars.update_one({'name': name_receive2}, {'$set': {'name': name_receive2}})
+#
+#     return jsonify({'msg': '삭제되었습니다.'})
+
+#이건 나중에ㅠㅠ
 
 
-    db.mars.delete_one({'name':name_receive2})
+
+@app.route("/mars_delete", methods=["POST"])
+def web_mars_post3():
+
+    name_receive3 = request.form['name_give3']
 
 
-    return jsonify({'msg': '삭제!'})
+    db.mars.delete_one({'name':name_receive3})
+
+
+    return jsonify({'msg': '삭제되었습니다.'})
 
 
 

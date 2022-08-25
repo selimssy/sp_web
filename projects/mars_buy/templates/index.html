@@ -112,18 +112,21 @@
             // });
 
             $(document).on("click", ".del_del", function () {
-                $(this).parent().parent().remove();
-                let name = $(this).parent().parent().children().first().text()
-                $.ajax({
-                    type: 'POST',
-                    url: '/mars2',
-                    data: { name_give2: name},
-                    success: function (response) {
-                        alert(response['msg'])
+                let result = confirm("정말 삭제하시겠습니까?");
+                if(result){ //yes
+                    $(this).parent().parent().remove();
+                    let name = $(this).parent().parent().children().first().text()
+                    $.ajax({
+                        type: 'POST',
+                        url: '/mars_delete',
+                        data: {name_give3: name},
+                        success: function (response) {
+                            alert(response['msg'])
 
-                        window.location.reload()  // 새로고침
-                    }
-                })
+                            window.location.reload()  // 새로고침
+                        }
+                    })
+                }else{}  //no
 
             })
 
@@ -196,6 +199,7 @@
                     <th scope="col">이름</th>
                     <th scope="col">주소</th>
                     <th scope="col">평수</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody id="order_box">
